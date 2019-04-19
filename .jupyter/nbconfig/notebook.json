@@ -1,0 +1,5 @@
+{
+  "load_extensions": {
+    "lein-jupyter-parinfer/index": true
+  }
+}
