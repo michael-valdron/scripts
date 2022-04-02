@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Waterfox
+Exec=waterfox
+Icon=browser/chrome/icons/default/default256.png
+Type=Application
+Terminal=false
+Categories=Internet;
+MimeType=text/plain
