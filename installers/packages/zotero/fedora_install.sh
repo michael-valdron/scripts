@@ -11,7 +11,7 @@ fi
 VERSION="5.0.96.3"
 
 # Create required directories if they don't exist
-mkdir -p /tmp /opt/zotero
+mkdir -p /tmp
 
 # Install Dependencies
 dnf -y install curl which bzip2
@@ -21,11 +21,15 @@ curl -L "https://www.zotero.org/download/client/dl?channel=release&platform=linu
 
 # Install Zotero
 tar -xf /tmp/zotero.tar.bz2 -C /tmp
+if [ -d /opt/zotero ]; then rm -rf /opt/zotero; fi
 mv /tmp/Zotero_linux-x86_64 /opt/zotero
 cp $(dirname $0)/run.sh /opt/zotero/run.sh
 chmod +x /opt/zotero/run.sh
-ln -s /opt/zotero/run.sh /usr/bin/zotero
-ln -s /opt/zotero/zotero.desktop /usr/local/share/applications/zotero.desktop
+if [ ! -f /usr/bin/zotero ]; then ln -s /opt/zotero/run.sh /usr/bin/zotero; fi
+if [ ! -f /usr/local/share/applications/zotero.desktop ]
+then
+    ln -s /opt/zotero/zotero.desktop /usr/local/share/applications/zotero.desktop
+fi
 
 # Installation Check
 ZOTERO_PATH=$(which zotero)
