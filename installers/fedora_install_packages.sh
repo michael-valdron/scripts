@@ -125,3 +125,5 @@ flatpak install -y flathub com.skype.Client
 flatpak install -y flathub com.anydesk.Anydesk
 ## Install Telegram
 flatpak install -y flathub org.telegram.desktop
+## Install Slack
+flatpak install -y flathub com.slack.Slack
