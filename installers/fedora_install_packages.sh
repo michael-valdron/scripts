@@ -33,7 +33,7 @@ dnf -y update
 # Install packages
 dnf -y install neofetch cmatrix tmux htop ufw zsh gcc gcc-c++ curl make cmake go java-11-openjdk clojure code chromium podman podman-docker podman-compose \
     firefox flatpak keepassxc gimp libreoffice calibre xournalpp clamav clamtk vlc sqlitebrowser p7zip p7zip-gui p7zip-plugins cheese @virtualization \
-    unzip wget libappindicator redhat-lsb-core google-cloud-sdk bridge-utils openssl
+    unzip wget libappindicator redhat-lsb-core google-cloud-sdk bridge-utils openssl duplicity deja-dup
 
 # Install Minikube
 sh packages/minikube/fedora_install.sh
