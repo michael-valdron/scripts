@@ -8,7 +8,7 @@ then
 fi
 
 # Variables
-VERSION="1.7.7"
+VERSION="1.7.8"
 
 # Create required directories if they don't exist
 mkdir -p /tmp /opt/balena-etcher-electron/chrome-sandbox
