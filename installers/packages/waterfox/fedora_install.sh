@@ -8,7 +8,7 @@ then
 fi
 
 # Variables
-WATERFOX_VERSION="G4.0.8"
+WATERFOX_VERSION="G4.1.1"
 BASE_PATH=$(dirname $0)
 
 # If in directory script is located.
