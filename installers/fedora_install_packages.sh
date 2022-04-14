@@ -62,15 +62,6 @@ then
     exit $STATUS
 fi
 
-# Install Mailspring
-sh packages/mailspring/fedora_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
-then
-    echo "Mailspring failed to install."
-    exit $STATUS
-fi
-
 # Install Etcher
 sh packages/etcher/fedora_install.sh
 STATUS=$?
@@ -127,3 +118,5 @@ flatpak install -y flathub com.anydesk.Anydesk
 flatpak install -y flathub org.telegram.desktop
 ## Install Slack
 flatpak install -y flathub com.slack.Slack
+## Install Mailspring
+flatpak install -y flathub com.getmailspring.Mailspring
