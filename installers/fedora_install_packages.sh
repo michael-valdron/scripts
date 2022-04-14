@@ -7,25 +7,25 @@ then
     exit 1
 fi
 
+YUM_REPOS_DIR=/etc/yum.repos.d
+BASE_DIR=$(dirname $0)
+
 # Enable fusion repositorties
 dnf -y install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
 dnf -y install "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 
-# Add Visual Studio Code repository
-rpm --import "https://packages.microsoft.com/keys/microsoft.asc"
-sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+# Add Visual Studio Code repository, if not exist
+if [ ! -f $YUM_REPOS_DIR/vscode.repo ];
+then
+    rpm --import "https://packages.microsoft.com/keys/microsoft.asc"
+    cp $BASE_DIR/repos/vscode.repo $YUM_REPOS_DIR/vscode.repo
+fi
 
-# Add GCP SDK repository
-sudo tee -a /etc/yum.repos.d/google-cloud-sdk.repo << EOM
-[google-cloud-sdk]
-name=Google Cloud SDK
-baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el8-x86_64
-enabled=1
-gpgcheck=1
-repo_gpgcheck=0
-gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
-       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-EOM
+# Add GCP SDK repository, if not exist
+if [ ! -f $YUM_REPOS_DIR/google-cloud-sdk.repo ];
+then
+    cp $BASE_DIR/repos/google-cloud-sdk.repo $YUM_REPOS_DIR/google-cloud-sdk.repo
+fi
 
 # Update packages
 dnf -y update
@@ -33,10 +33,10 @@ dnf -y update
 # Install packages
 dnf -y install neofetch cmatrix tmux htop ufw zsh gcc gcc-c++ curl make cmake go java-11-openjdk clojure code chromium podman podman-docker podman-compose \
     firefox flatpak keepassxc gimp libreoffice calibre xournalpp clamav clamtk vlc sqlitebrowser p7zip p7zip-gui p7zip-plugins cheese @virtualization \
-    unzip wget libappindicator redhat-lsb-core google-cloud-sdk bridge-utils openssl duplicity deja-dup balena-etcher-electron ansible
+    unzip wget libappindicator redhat-lsb-core google-cloud-sdk bridge-utils openssl duplicity deja-dup ansible kdenlive nodejs npm yarnpkg
 
 # Install Minikube
-sh packages/minikube/fedora_install.sh
+sh $BASE_DIR/packages/minikube/fedora_install.sh
 STATUS=$?
 if [ $STATUS -ne 0 ]
 then
@@ -45,7 +45,7 @@ then
 fi
 
 # Install odo
-sh packages/odo/fedora_install.sh
+sh $BASE_DIR/packages/odo/fedora_install.sh
 STATUS=$?
 if [ $STATUS -ne 0 ]
 then
@@ -54,7 +54,7 @@ then
 fi
 
 # Install Waterfox
-sh packages/waterfox/fedora_install.sh
+sh $BASE_DIR/packages/waterfox/fedora_install.sh
 STATUS=$?
 if [ $STATUS -ne 0 ]
 then
@@ -62,8 +62,17 @@ then
     exit $STATUS
 fi
 
+# Install Etcher
+sh $BASE_DIR/packages/etcher/fedora_install.sh
+STATUS=$?
+if [ $STATUS -ne 0 ]
+then
+    echo "Etcher failed to install."
+    exit $STATUS
+fi
+
 # Install Zotero
-sh packages/zotero/fedora_install.sh
+sh $BASE_DIR/packages/zotero/fedora_install.sh
 STATUS=$?
 if [ $STATUS -ne 0 ]
 then
@@ -72,7 +81,7 @@ then
 fi
 
 # Install Gradle
-sh packages/gradle/fedora_install.sh
+sh $BASE_DIR/packages/gradle/fedora_install.sh
 STATUS=$?
 if [ $STATUS -ne 0 ]
 then
@@ -81,7 +90,7 @@ then
 fi
 
 # Install Leiningen
-sh packages/lein/fedora_install.sh
+sh $BASE_DIR/packages/lein/fedora_install.sh
 STATUS=$?
 if [ $STATUS -ne 0 ]
 then
