@@ -21,7 +21,7 @@ curl -L "https://github.com/balena-io/etcher/releases/download/v${VERSION}/balen
 
 # Install Etcher
 rpm -i --quiet /tmp/etcher.rpm
-ln -s /opt/balenaEtcher/balena-etcher-electron /usr/bin/etcher
+if [ ! -f /usr/bin/etcher ]; then ln -s /opt/balenaEtcher/balena-etcher-electron /usr/bin/etcher; fi
 
 # Installation Check
 ETCHER_PATH=$(which etcher)

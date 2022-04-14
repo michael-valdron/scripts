@@ -13,7 +13,7 @@ dnf -y install curl which java-11-openjdk clojure
 # Download & Install Leiningen
 curl -L "https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein" -o /usr/local/bin/lein
 chmod +x /usr/local/bin/lein
-ln -s /usr/local/bin/lein /usr/bin/lein
+if [ ! -f /usr/bin/lein ]; then ln -s /usr/local/bin/lein /usr/bin/lein; fi
 
 # Installation Check
 LEIN_PATH=$(which lein)
