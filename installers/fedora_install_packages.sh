@@ -27,13 +27,20 @@ then
     cp $BASE_DIR/repos/google-cloud-sdk.repo $YUM_REPOS_DIR/google-cloud-sdk.repo
 fi
 
+# Add yadm repository, if not exist
+if [ ! -f $YUM_REPOS_DIR/home:TheLocehiliosan:yadm.repo ];
+then
+    dnf -y install 'dnf-command(config-manager)'
+    dnf -y config-manager --add-repo https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/Fedora_35/home:TheLocehiliosan:yadm.repo
+fi
+
 # Update packages
 dnf -y update
 
 # Install packages
 dnf -y install neofetch cmatrix tmux htop ufw zsh gcc gcc-c++ curl make cmake go java-11-openjdk clojure code chromium podman podman-docker podman-compose \
     firefox flatpak keepassxc gimp libreoffice calibre xournalpp clamav clamtk vlc sqlitebrowser p7zip p7zip-gui p7zip-plugins cheese @virtualization \
-    unzip wget libappindicator redhat-lsb-core google-cloud-sdk bridge-utils openssl duplicity deja-dup ansible kdenlive nodejs npm yarnpkg
+    unzip wget libappindicator redhat-lsb-core google-cloud-sdk bridge-utils openssl duplicity deja-dup ansible kdenlive nodejs npm yarnpkg yadm
 
 # Install Minikube
 sh $BASE_DIR/packages/minikube/fedora_install.sh
