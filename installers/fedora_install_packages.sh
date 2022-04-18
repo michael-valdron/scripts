@@ -28,10 +28,9 @@ then
 fi
 
 # Add yadm repository, if not exist
-if [ ! -f $YUM_REPOS_DIR/home:TheLocehiliosan:yadm.repo ];
+if [ ! -f $YUM_REPOS_DIR/home:TheLocehiliosan:yadm.repo ] && [ ! -f $YUM_REPOS_DIR/yadm.repo ];
 then
-    dnf -y install 'dnf-command(config-manager)'
-    dnf -y config-manager --add-repo https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/Fedora_35/home:TheLocehiliosan:yadm.repo
+    cp $BASE_DIR/repos/yadm.repo $YUM_REPOS_DIR/yadm.repo
 fi
 
 # Update packages
