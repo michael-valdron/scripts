@@ -9,6 +9,10 @@ fi
 
 YUM_REPOS_DIR=/etc/yum.repos.d
 BASE_DIR=$(dirname $0)
+DIST=$(jq -r ".dist" $1)
+PACKAGES=($(jq -r ".packages[].name" $1 | tr '\n' ' ' | xargs))
+METHODS=($(jq -r ".packages[].method" $1 | tr '\n' ' ' | xargs))
+DESC=($(jq -r ".packages[].description" $1 | tr '\n' ' ' | xargs))
 
 # Enable fusion repositorties
 dnf -y install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
