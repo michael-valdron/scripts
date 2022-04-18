@@ -1,0 +1,100 @@
+{
+    "dist": "fedora",
+    "packages": [
+        {
+            "name": "code",
+            "method": "pacman",
+            "description": "Visual Studio Code"
+        },
+        {
+            "name": "yadm",
+            "method": "pacman",
+            "description": "yadm"
+        },
+        {
+            "name": "google-cloud-sdk",
+            "method": "pacman",
+            "description": "Google Cloud SDK"
+        },
+        {
+            "name": "minikube",
+            "method": "direct",
+            "description": "Minikube"
+        },
+        {
+            "name": "odo",
+            "method": "direct",
+            "description": "odo"
+        },
+        {
+            "name": "waterfox",
+            "method": "direct",
+            "description": "Waterfox"
+        },
+        {
+            "name": "etcher",
+            "method": "direct",
+            "description": "Balena Etcher"
+        },
+        {
+            "name": "zotero",
+            "method": "direct",
+            "description": "Zotero"
+        },
+        {
+            "name": "gradle",
+            "method": "direct",
+            "description": "Gradle"
+        },
+        {
+            "name": "lein",
+            "method": "direct",
+            "description": "Leiningen"
+        },
+        {
+            "name": "com.getpostman.Postman",
+            "method": "flatpak",
+            "description": "Postman"
+        },
+        {
+            "name": "com.makemkv.MakeMKV",
+            "method": "flatpak",
+            "description": "MakeMKV"
+        },
+        {
+            "name": "com.obsproject.Studio",
+            "method": "flatpak",
+            "description": "OBS Studio"
+        },
+        {
+            "name": "fr.handbrake.ghb",
+            "method": "flatpak",
+            "description": "Handbrake"
+        },
+        {
+            "name": "com.skype.Client",
+            "method": "flatpak",
+            "description": "Skype"
+        },
+        {
+            "name": "com.anydesk.Anydesk",
+            "method": "flatpak",
+            "description": "Anydesk"
+        },
+        {
+            "name": "org.telegram.desktop",
+            "method": "flatpak",
+            "description": "Telegram Desktop"
+        },
+        {
+            "name": "com.slack.Slack",
+            "method": "flatpak",
+            "description": "Slack Desktop"
+        },
+        {
+            "name": "com.getmailspring.Mailspring",
+            "method": "flatpak",
+            "description": "Mailspring"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+[
+    {
+        "name": "yadm",
+        "package": "yadm"
+    },
+    {
+        "name": "vscode",
+        "package": "code"
+    },
+    {
+        "name": "google-cloud-sdk",
+        "package": "google-cloud-sdk"
+    }
+]
