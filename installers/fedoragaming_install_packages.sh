@@ -21,7 +21,7 @@ then
 fi
 
 # Remove packages
-dnf -y remove firefox kmail konversation krdc krfb libreoffice-core kontact
+dnf -y remove firefox kmail konversation krdc krfb libreoffice-core kontact kde-connect akregator
 
 # Update packages
 dnf -y update
