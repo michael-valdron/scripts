@@ -29,16 +29,7 @@ dnf -y remove firefox kmail konversation krdc krfb libreoffice-core kontact
 # Install packages
 dnf -y install neofetch cmatrix tmux htop gcc gcc-c++ curl make cmake flatpak steam \
     unzip wget openssl yadm wine wine-dxvk winetricks wine-dxvk-d3d9 wine-dxvk-dxgi \
-    lutris 
-
-# Install Dolphin Emu
-sh $BASE_DIR/packages/dolphin/fedora_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
-then
-    echo "Dolphin failed to install."
-    exit $STATUS
-fi
+    lutris dolphin-emu
 
 # Add flatpak remotes
 flatpak remote-add --if-not-exists flathub "https://flathub.org/repo/flathub.flatpakrepo"
