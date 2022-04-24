@@ -21,7 +21,8 @@ then
 fi
 
 # Remove packages
-dnf -y remove firefox kmail konversation krdc krfb libreoffice-core kontact kde-connect akregator
+dnf -y remove firefox kmail konversation krdc krfb libreoffice-core kontact kde-connect akregator \
+    kaddressbook korganizer qt5-qdbusviewer qt-qdbusviewer qt6-qdbusviewer
 
 # Update packages
 dnf -y update
