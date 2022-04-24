@@ -21,8 +21,14 @@ docker build --no-cache --force-rm -t $IMG:$TAG \
 --build-arg script=$(basename $SCRIPT) \
 $BUILD_PATH
 
+# Set build status code
+STATUS=$?
+
 # Remove testing image
 docker rmi $IMG:$TAG
 
 # Remove target script from pwd
 rm -rf $BUILD_PATH/$(basename $TARGET_DIR)
+
+# Exit with build status code
+exit $STATUS
