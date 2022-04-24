@@ -20,11 +20,11 @@ then
     cp $BASE_DIR/repos/yadm.repo $YUM_REPOS_DIR/yadm.repo
 fi
 
-# Update packages
-dnf -y update
-
 # Remove packages
 dnf -y remove firefox kmail konversation krdc krfb libreoffice-core kontact
+
+# Update packages
+dnf -y update
 
 # Install packages
 dnf -y install neofetch cmatrix tmux htop gcc gcc-c++ curl make cmake flatpak steam \
