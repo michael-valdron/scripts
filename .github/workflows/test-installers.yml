@@ -8,11 +8,27 @@ on:
 
 jobs:
 
-  build:
+  fedora:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Test Fedora
+    - name: Test Fedora Install
       run: sh test/fedora/test.sh installers/fedora_install_packages.sh
+
+  fedoragaming:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test Fedora Gaming Install
+      run: sh test/fedora/test.sh installers/fedoragaming_install_packages.sh
+
+  manjarogaming:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test Manjaro Gaming Install
+      run: sh test/archlinux/test.sh installers/manjaro_gaming_install_packages.sh
