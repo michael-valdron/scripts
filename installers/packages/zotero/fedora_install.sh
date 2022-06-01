@@ -8,7 +8,7 @@ then
 fi
 
 # Variables
-VERSION="6.0.4"
+VERSION="6.0.8"
 
 # Create required directories if they don't exist
 mkdir -p /tmp
