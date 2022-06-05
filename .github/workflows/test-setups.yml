@@ -1,0 +1,18 @@
+name: Test Setups
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  rocky:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test Rocky Setup
+      run: sh test/rocky/test.sh installers/rocky_setup.sh
