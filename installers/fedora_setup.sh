@@ -16,6 +16,9 @@ dnf -y update
 
 if [ -z "${1}" ] || [ "${1}" != "1" ]
 then
+    # Install flatpak
+    dnf -y install flatpak
+
     # Add flatpak remotes
     flatpak remote-add --if-not-exists flathub "https://flathub.org/repo/flathub.flatpakrepo"
 fi
