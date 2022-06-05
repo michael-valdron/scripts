@@ -10,9 +10,8 @@ fi
 YUM_REPOS_DIR=/etc/yum.repos.d
 BASE_DIR=$(dirname $0)
 
-# Enable fusion repositorties
-dnf -y install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
-dnf -y install "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+# Run base setup
+sh $BASE_DIR/fedora_setup.sh 1
 
 # Add Visual Studio Code repository, if not exist
 if [ ! -f $YUM_REPOS_DIR/vscode.repo ];
