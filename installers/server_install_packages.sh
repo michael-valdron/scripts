@@ -14,8 +14,7 @@ base_dir=$(dirname $0)
 sh $base_dir/rocky_setup.sh
 
 # Install packages
-dnf -y install htop neofetch tmux zsh podman podman-compose podman-docker @virt virt-top libguestfs-tools virt-install nginx \
-    php php-pgsql postgresql-server samba git
+dnf -y install htop neofetch tmux zsh podman podman-compose podman-docker @virt virt-top libguestfs-tools virt-install samba git
 
 # Install ZFS
 sh $base_dir/packages/zfs/rocky_install.sh
