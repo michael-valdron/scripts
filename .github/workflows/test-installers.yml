@@ -25,7 +25,7 @@ jobs:
     - name: Test Fedora Gaming Install
       run: sh test/fedora/test.sh installers/fedoragaming_install_packages.sh
 
-  rockyserver:
+  server:
 
     runs-on: ubuntu-latest
 
@@ -33,6 +33,15 @@ jobs:
     - uses: actions/checkout@v3
     - name: Test Rocky Server Install
       run: sh test/rocky/test.sh installers/server_install_packages.sh
+
+  cloud:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test Rocky Cloud Install
+      run: sh test/rocky/test.sh installers/cloud_install_packages.sh
 
   manjarogaming:
     runs-on: ubuntu-latest
