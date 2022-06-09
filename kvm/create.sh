@@ -12,7 +12,7 @@ then
     exit 2
 fi
 
-# Variable
+# Variables
 base_dir=$(dirname $0)
 template_name=$1
 vm_name=$2
