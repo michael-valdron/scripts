@@ -25,15 +25,6 @@ then
     exit $status
 fi
 
-# Install Jellyfin
-sh $base_dir/packages/jellyfin/rocky_install.sh
-status=$?
-if [ $status -ne 0 ]
-then
-    echo "Jellyfin failed to install."
-    exit $status
-fi
-
 # Enable libvirtd
 systemctl enable libvirtd
 
@@ -57,8 +48,5 @@ qemu-img --version
 
 # Test pg
 psql --version
-
-# Test Jellyfin
-jellyfin --version
 
 exit 0
