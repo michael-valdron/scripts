@@ -46,7 +46,4 @@ podman --version
 # Test qemu
 qemu-img --version
 
-# Test pg
-psql --version
-
 exit 0
