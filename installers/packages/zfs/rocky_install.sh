@@ -8,7 +8,10 @@ then
 fi
 
 # Install ZFS repository
-dnf -y install https://zfsonlinux.org/epel/zfs-release.el8_4.noarch.rpm
+dnf -y install https://zfsonlinux.org/epel/zfs-release.el8_6.noarch.rpm
+
+# Import GPG Key
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 
 # Install packages
 dnf -y install kernel-devel zfs
