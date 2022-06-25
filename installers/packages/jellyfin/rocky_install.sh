@@ -8,7 +8,7 @@ then
 fi
 
 DISTRO=centos
-VERSION=10.7.7-1
+VERSION=10.8.0-1
 
 # Install RPM Fusion repositories
 dnf -y install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm \
