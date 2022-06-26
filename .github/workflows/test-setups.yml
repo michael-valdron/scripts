@@ -4,6 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
+      - ".github/workflows/test-setups.yml"
       - "installers/*_setup.sh"
   pull_request:
     branches: [ main ]

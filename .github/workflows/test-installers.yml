@@ -4,6 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
+      - ".github/workflows/test-installers.yml"
       - "installers/**"
   pull_request:
     branches: [ main ]
