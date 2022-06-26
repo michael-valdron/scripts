@@ -3,6 +3,8 @@ name: Test Setups
 on:
   push:
     branches: [ main ]
+    paths:
+      - "installers/*_setup.sh"
   pull_request:
     branches: [ main ]
 
