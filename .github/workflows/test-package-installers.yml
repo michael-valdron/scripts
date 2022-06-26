@@ -1,0 +1,31 @@
+name: Test Package Installers
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  fedora:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test Fedora Package Installers
+      run: sh test/testall.sh fedora installers/packages/**/fedora_install.sh
+
+  arch:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test Arch Linux Package Installers
+      run: sh test/testall.sh archlinux installers/packages/**/arch_install.sh
+  
+  rocky:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test Rocky Linux Package Installers
+      run: sh test/testall.sh rocky installers/packages/**/rocky_install.sh
