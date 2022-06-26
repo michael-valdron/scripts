@@ -8,7 +8,7 @@ then
 fi
 
 # Variables
-WATERFOX_VERSION="G4.1.3"
+WATERFOX_VERSION="$(basename $(curl -Ls -o/dev/null -w %{url_effective} https://github.com/WaterfoxCo/Waterfox/releases/latest))"
 BASE_PATH=$(dirname $0)
 
 # If in directory script is located.
