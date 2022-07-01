@@ -11,4 +11,4 @@ RUN powershell.exe -executionpolicy bypass ${script}
 
 WORKDIR /
 
-RUN rm -rf /target
+RUN powershell.exe -Command Remove-Item -Recurse /target
