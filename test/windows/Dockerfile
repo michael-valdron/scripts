@@ -3,8 +3,6 @@ FROM mcr.microsoft.com/windows/server:ltsc2022
 ARG target
 ARG script
 
-USER root
-
 COPY ${target} /target
 
 WORKDIR /target
