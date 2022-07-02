@@ -47,3 +47,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Test Debian Bullseye Setup
         run: sh test/debian/bullseye/test.sh installers/debian_setup.sh
+  
+  windows:
+    runs-on: windows-2022
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test Windows Setup
+        run: powershell.exe -executionpolicy bypass test/windows/test.ps1 installers/win_setup.ps1
