@@ -1,7 +1,8 @@
 #!/usr/bin/env pwsh
 
+# Check if script to test if specified
 if (!$args[0]) {
-    Write-Output 'Please specify script to test.'
+    Write-Error 'Please specify script to test.'
     exit 1
 }
 
