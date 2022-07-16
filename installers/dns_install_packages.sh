@@ -9,26 +9,32 @@ fi
 
 # Variables
 base_dir=$(dirname $0)
+pihole_install_script=/tmp/install-pihole.sh
 
 # Run Rocky Linux setup script
-sh $base_dir/rocky_setup.sh
+sh $base_dir/debian_setup.sh
 
-# Install packages
-dnf -y install htop neofetch tmux git lighttpd \
-    lighttpd-fastcgi php
+# Install Packages
+apt-get install curl -yq
 
-# PiHole Install
-curl -sSL https://install.pi-hole.net \
-    | PIHOLE_SELINUX=true bash
+# Download PiHole Installer
+curl -L https://install.pi-hole.net -o $pihole_install_script
 
-# Test neofetch
-neofetch
-
-# Test htop
-htop --version
-
-# Test tmux
-tmux -V
+# Do not run PiHole installer script if testing
+if [ ! -z "${SCRIPT_TESTING}" ]
+then
+    # Check Install Script
+    if [ -f $pihole_install_script ] 
+    then
+        echo "'${pihole_install_script}' exists.. ok!"
+    else
+        echo "'${pihole_install_script}' exists.. failed!"
+        echo "PiHole installer script did not download correctly."
+        exit 2
+    fi
+else
+    # PiHole Install
+    bash $pihole_install_script 
+fi
 
 exit 0
-
