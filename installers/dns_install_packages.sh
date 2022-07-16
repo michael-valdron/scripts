@@ -17,7 +17,7 @@ sh $base_dir/rocky_setup.sh
 dnf -y install htop neofetch tmux git
 
 # PiHole Install
-curl -sSL https://install.pi-hole.net | bash
+curl -sSL https://install.pi-hole.net | PIHOLE_SELINUX=true bash
 
 # Test neofetch
 neofetch
