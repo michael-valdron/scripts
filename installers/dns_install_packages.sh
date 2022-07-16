@@ -14,10 +14,12 @@ base_dir=$(dirname $0)
 sh $base_dir/rocky_setup.sh
 
 # Install packages
-dnf -y install htop neofetch tmux git
+dnf -y install htop neofetch tmux git lighttpd \
+    lighttpd-fastcgi php
 
 # PiHole Install
-curl -sSL https://install.pi-hole.net | PIHOLE_SELINUX=true bash
+curl -sSL https://install.pi-hole.net \
+    | PIHOLE_SELINUX=true bash
 
 # Test neofetch
 neofetch
