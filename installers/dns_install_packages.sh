@@ -10,11 +10,14 @@ fi
 # Variables
 base_dir=$(dirname $0)
 
-# Run Rocky Linux setup script (disabled)
-# sh $base_dir/rocky_setup.sh
+# Run Rocky Linux setup script
+sh $base_dir/rocky_setup.sh
 
 # Install packages
 dnf -y install htop neofetch tmux git
+
+# PiHole Install
+curl -sSL https://install.pi-hole.net | bash
 
 # Test neofetch
 neofetch
