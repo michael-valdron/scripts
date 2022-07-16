@@ -38,6 +38,15 @@ jobs:
     - name: Test Rocky Server Install
       run: sh test/rocky/test.sh installers/server_install_packages.sh
 
+  nameserver:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test Rocky Nameserver Install
+      run: sh test/rocky/test.sh installers/dns_install_packages.sh
+
   cloud:
 
     runs-on: ubuntu-latest
