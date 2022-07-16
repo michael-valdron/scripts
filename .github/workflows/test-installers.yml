@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/test-installers.yml"
       - "installers/**"
+      - "test/**"
   pull_request:
     branches: [ main ]
 
