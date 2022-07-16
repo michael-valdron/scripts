@@ -1,4 +1,4 @@
-FROM rockylinux:latest
+FROM rockylinux:8.6
 
 ARG target
 ARG script
