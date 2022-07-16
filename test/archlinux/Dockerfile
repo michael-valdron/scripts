@@ -3,6 +3,8 @@ FROM archlinux:base
 ARG target
 ARG script
 
+ENV SCRIPT_TESTING=1
+
 USER root
 
 COPY ${target} /target
