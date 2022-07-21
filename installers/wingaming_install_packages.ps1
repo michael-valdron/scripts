@@ -22,7 +22,7 @@ winget upgrade -h --all
 # Install packages
 winget install -h Waterfox.Waterfox Microsoft.WindowsTerminal OBSProject.OBSStudio `
     Discord.Discord Valve.Steam ElectronicArts.EADesktop DolphinEmulator.Dolphin `
-    Mupen64.Mupen64 DOSBox.DOSBox Duplicati.Duplicati
+    Mupen64.Mupen64 DOSBox.DOSBox Duplicati.Duplicati --source winget
 if ($LASTEXITCODE -ne 0) {
     Write-Error 'Failed to install winget packages.'
     exit $LASTEXITCODE

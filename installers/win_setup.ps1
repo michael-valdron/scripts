@@ -12,7 +12,7 @@ if (!$currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Adminis
 # Check if winget is installed
 try {
     # Install git if winget is installed
-    winget install git
+    winget install Git.Git --source winget
 }
 catch {
     # If not, install winget then git
@@ -24,7 +24,7 @@ catch {
     Add-AppxPackage -Path $winget_package -Confirm
 
     try {
-        winget install git
+        winget install Git.Git --source
     }
     catch {
         Write-Error 'winget did not install correctly'

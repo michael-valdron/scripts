@@ -25,7 +25,7 @@ winget install -h 7zip.7zip Waterfox.Waterfox Microsoft.VisualStudioCode Microso
     KDE.Kdenlive OBSProject.OBSStudio calibre.calibre KeePassXCTeam.KeePassXC VideoLAN.VLC DelugeTeam.Deluge Cyanfish.NAPS2 `
     HandBrake.HandBrake Telegram.TelegramDesktop GuinpinSoft.MakeMKV SlackTechnologies.Slack Postman.Postman Microsoft.Skype `
     AnyDeskSoftwareGmbH.AnyDesk Foundry376.Mailspring Zotero.Zotero Balena.Etcher Duplicati.Duplicati OpenVPNTechnologies.OpenVPN `
-    GnuPG.Gpg4win
+    GnuPG.Gpg4win --source winget
 if ($LASTEXITCODE -ne 0) {
     Write-Error 'Failed to install winget packages.'
     exit $LASTEXITCODE
