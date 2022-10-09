@@ -32,14 +32,16 @@ then
     cp $BASE_DIR/repos/yadm.repo $YUM_REPOS_DIR/yadm.repo
 fi
 
+# Remove packages
+dnf -y remove libreoffice-core
+
 # Update packages
 dnf -y update
 
 # Install packages
 dnf -y install neofetch cmatrix tmux htop ufw zsh gcc gcc-c++ curl make cmake go java-11-openjdk clojure code chromium podman podman-docker podman-compose \
-    firefox flatpak keepassxc gimp libreoffice calibre xournalpp clamav clamtk vlc sqlitebrowser p7zip p7zip-gui p7zip-plugins cheese @virtualization \
-    unzip wget libappindicator redhat-lsb-core google-cloud-sdk bridge-utils openssl duplicity deja-dup ansible kdenlive nodejs npm yarnpkg yadm libguestfs \
-    deluge paperwork
+    firefox flatpak clamav clamtk p7zip p7zip-gui p7zip-plugins cheese @virtualization unzip wget libappindicator redhat-lsb-core google-cloud-sdk bridge-utils \
+    openssl ansible nodejs npm yarnpkg yadm libguestfs paperwork
 
 # Install Minikube
 sh $BASE_DIR/packages/minikube/fedora_install.sh
@@ -56,15 +58,6 @@ STATUS=$?
 if [ $STATUS -ne 0 ]
 then
     echo "odo failed to install."
-    exit $STATUS
-fi
-
-# Install Waterfox
-sh $BASE_DIR/packages/waterfox/fedora_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
-then
-    echo "Waterfox failed to install."
     exit $STATUS
 fi
 
@@ -120,9 +113,29 @@ flatpak install -y flathub fr.handbrake.ghb
 flatpak install -y flathub com.skype.Client
 ## Install AnyDesk
 flatpak install -y flathub com.anydesk.Anydesk
-## Install Telegram
-flatpak install -y flathub org.telegram.desktop
+## Install Signal
+flatpak install -y flathub org.signal.Signal
 ## Install Slack
 flatpak install -y flathub com.slack.Slack
 ## Install Mailspring
 flatpak install -y flathub com.getmailspring.Mailspring
+## DejaDup Install
+flatpak install -y flathub org.gnome.DejaDup
+## GIMP Install
+flatpak install -y flathub org.gimp.GIMP
+## VLC Install
+flatpak install -y flathub org.videolan.VLC
+## KeePassXC Install
+flatpak install -y flathub org.keepassxc.KeePassXC
+## LibreOffice Install
+flatpak install -y flathub org.libreoffice.LibreOffice
+## calibre Install
+flatpak install -y flathub com.calibre_ebook.calibre
+## Xournal++ Install
+flatpak install -y flathub com.github.xournalpp.xournalpp
+## SQLite Browser Install
+flatpak install -y flathub org.sqlitebrowser.sqlitebrowser
+## Kdenlive Install
+flatpak install -y flathub org.kde.kdenlive
+## Deluge Install
+flatpak install -y flathub org.deluge_torrent.deluge
