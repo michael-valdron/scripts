@@ -39,9 +39,7 @@ dnf -y remove libreoffice-core
 dnf -y update
 
 # Install packages
-dnf -y install neofetch cmatrix tmux htop ufw zsh gcc gcc-c++ curl make cmake go java-11-openjdk clojure code chromium podman podman-docker podman-compose \
-    firefox flatpak clamav clamtk p7zip p7zip-gui p7zip-plugins cheese @virtualization unzip wget libappindicator redhat-lsb-core google-cloud-sdk bridge-utils \
-    openssl ansible nodejs npm yarnpkg yadm libguestfs paperwork
+dnf -y install $((<$BASE_DIR/packages/${1}.rpm.json jq -r '.[].id | @sh') | tr -d \')
 
 # Install Minikube
 sh $BASE_DIR/packages/minikube/fedora_install.sh
