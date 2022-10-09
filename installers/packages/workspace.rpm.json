@@ -1,0 +1,10 @@
+[
+    {
+        "id": "neofetch",
+        "description": "System INFO printer."
+    },
+    {
+        "id": "htop",
+        "description": "CLI System Monitor."
+    }
+]
