@@ -16,15 +16,6 @@ pacman -Syu --noconfirm
 # Install packages
 pacman -Sy --needed base-devel git steam discord wine vkd3d lib32-vkd3d lutris sauerbraten sauerbraten-data dosbox --noconfirm
 
-# Install Waterfox
-sh packages/waterfox/arch_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
-then
-    echo "Waterfox failed to install."
-    exit $STATUS
-fi
-
 # # Install Dolphin
 # sh packages/dolphin/arch_install.sh
 # STATUS=$?
