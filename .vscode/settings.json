@@ -1,0 +1,16 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/*.flatpak.json"
+            ],
+            "url": "/schemas/flatpak.json"
+        },
+        {
+            "fileMatch": [
+                "/*.rpm.json"
+            ],
+            "url": "/schemas/rpm.json"
+        }
+    ]
+}

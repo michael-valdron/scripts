@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/schema",
+
+    "definitions": {
+        "Package": {
+            "description": "A flatpak package.",
+            "type": "object",
+            "properties": {
+                "id": { 
+                    "type": "string",
+                    "description": "Identifier of package."
+                },
+                "name": { 
+                    "type": "string",
+                    "description": "Readable name of package."
+                },
+                "description": { 
+                    "type": "string",
+                    "description": "Descriptive information about the package."
+                },
+                "source": { 
+                    "type": "string",
+                    "enum": [ "flathub", "fedora" ],
+                    "default": "flathub",
+                    "description": "Source of flatpak package."
+                },
+                "action": {
+                    "type": "string",
+                    "enum": [ "install", "update", "remove" ],
+                    "default": "install",
+                    "description": "Action to take on package."
+                }
+            },
+            "required": [ "id", "source" ]
+        }
+    },
+
+    "type": "array",
+    "description": "Flatpak packages in profile.",
+    "items": {
+        "$ref": "#/definitions/Package"
+    }
+}
