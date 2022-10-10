@@ -6,5 +6,166 @@
     {
         "id": "htop",
         "description": "CLI System Monitor."
+    },
+    {
+        "id": "cmatrix",
+        "description": "Terminal matrix animation."
+    },
+    {
+        "id": "tmux",
+        "description": "Terminal multiplexer."
+    },
+    {
+        "id": "zsh",
+        "description": "Shell"
+    },
+    {
+        "id": "gcc",
+        "description": "C compiler."
+    },
+    {
+        "id": "gcc-c++",
+        "description": "C++ compiler."
+    },
+    {
+        "id": "curl",
+        "description": "Free URL data transfer client software."
+    },
+    {
+        "id": "make",
+        "name": "GNU Make",
+        "description": "Build automation tool."
+    },
+    {
+        "id": "cmake",
+        "name": "CMake",
+        "description": "Build automation tool."
+    },
+    {
+        "id": "go",
+        "name": "Go Runtime",
+        "description": "Go Runtime."
+    },
+    {
+        "id": "java-11-openjdk",
+        "name": "Java OpenJDK 11",
+        "description": "Java 11 Runtime Environment & Development Kit."
+    },
+    {
+        "id": "clojure",
+        "name": "Clojure Runtime",
+        "description": "Clojure Runtime."
+    },
+    {
+        "id": "code",
+        "name": "Visual Studio Code",
+        "description": "Code Editor."
+    },
+    {
+        "id": "chromium",
+        "name": "Chromium",
+        "description": "Chromium Web Browser."
+    },
+    {
+        "id": "firefox",
+        "name": "Mozilla Firefox",
+        "description": "Firefox Web Browser."
+    },
+    {
+        "id": "podman",
+        "name": "Podman",
+        "description": "Container Runtime."
+    },
+    {
+        "id": "podman-docker",
+        "description": "Podman Docker alias."
+    },
+    {
+        "id": "podman-compose",
+        "description": "docker-compose alternative for podman."
+    },
+    {
+        "id": "flatpak",
+        "name": "Flatpak",
+        "description": "Package manager for flatpaks."
+    },
+    {
+        "id": "clamav",
+        "name": "ClamAV",
+        "description": "Anti-Virus Tool for Linux."
+    },
+    {
+        "id": "clamtk",
+        "name": "ClamTK",
+        "description": "GUI for ClamAV."
+    },
+    {
+        "id": "p7zip",
+        "name": "7Zip",
+        "description": "Archive utility."
+    },
+    {
+        "id": "p7zip-gui",
+        "description": "GUI for 7zip."
+    },
+    {
+        "id": "p7zip-plugins",
+        "description": "Plugins for 7zip."
+    },
+    {
+        "id": "cheese",
+        "name": "Cheese",
+        "description": "Photobooth software."
+    },
+    {
+        "id": "@virtualization",
+        "description": "Package group for virtualization with KVM."
+    },
+    {
+        "id": "unzip",
+        "description": "Unzip CLI utility."
+    },
+    {
+        "id": "wget",
+        "name": "GNU Wget",
+        "description": "Computer command line program for downloading."
+    },
+    {
+        "id": "libappindicator"
+    },
+    {
+        "id": "redhat-lsb-core"
+    },
+    {
+        "id": "google-cloud-sdk",
+        "name": "Google Cloud SDK",
+        "description": "Google Cloud CLI utility."
+    },
+    {
+        "id": "bridge-utils"
+    },
+    {
+        "id": "openssl"
+    },
+    {
+        "id": "ansible"
+    },
+    {
+        "id": "nodejs"
+    },
+    {
+        "id": "npm"
+    },
+    {
+        "id": "yarnpkg"
+    },
+    {
+        "id": "yadm"
+    },
+    {
+        "id": "libguestfs"
+    },
+    {
+        "id": "paperwork"
     }
 ]
