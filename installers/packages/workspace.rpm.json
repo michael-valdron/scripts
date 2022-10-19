@@ -131,10 +131,12 @@
         "description": "Computer command line program for downloading."
     },
     {
-        "id": "libappindicator"
+        "id": "libappindicator",
+        "description": "Application Indicators"
     },
     {
-        "id": "redhat-lsb-core"
+        "id": "redhat-lsb-core",
+        "description": "The Linux Standard Base (LSB) Core module support provides the fundamental system interfaces, libraries, and runtime environment upon which all conforming applications and libraries depend"
     },
     {
         "id": "google-cloud-sdk",
@@ -148,24 +150,36 @@
         "id": "openssl"
     },
     {
-        "id": "ansible"
+        "id": "ansible",
+        "name": "Ansible",
+        "description": "Radically simple IT automation system"
     },
     {
-        "id": "nodejs"
+        "id": "nodejs",
+        "name": "NodeJS",
+        "description": "JavaScript runtime environment"
     },
     {
-        "id": "npm"
+        "id": "npm",
+        "name": "Node Package Manager",
+        "description": "Node.js Package Manager"
     },
     {
-        "id": "yarnpkg"
+        "id": "yarnpkg",
+        "name": "Yarn",
+        "description": "Node Package Manager that doubles down as a project manager"
     },
     {
-        "id": "yadm"
+        "id": "yadm",
+        "name": "Yet Another Dotfiles Manager",
+        "description": "Uses a git repository to track user dotfiles"
     },
     {
         "id": "libguestfs"
     },
     {
-        "id": "paperwork"
+        "id": "paperwork",
+        "name": "Paperwork",
+        "description": "A personal document manager for scanned documents and PDFs"
     }
 ]
