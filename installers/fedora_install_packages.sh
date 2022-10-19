@@ -99,6 +99,7 @@ fi
 flatpak remote-add --if-not-exists flathub "https://flathub.org/repo/flathub.flatpakrepo"
 
 # Install flatpaks
+flatpaks=($((<$BASE_DIR/packages/workspace.flatpak.json jq -r '.[] | .source, .id') | tr -d \'))
 ## Install Postman
 flatpak install -y flathub com.getpostman.Postman
 ## Install MakeMKV
