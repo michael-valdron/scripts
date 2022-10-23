@@ -1,34 +1,39 @@
 #!/bin/sh
 
+args=($@)
+
 if [ -z "${1}" ]
 then
     echo "Please specify script to test."
     exit 1
 fi
 
-SCRIPT=$(readlink -f $1)
-TARGET_DIR=$(dirname $SCRIPT)
-BUILD_PATH=$(dirname $(readlink -f $0))
-IMG=$USER/$(basename $BUILD_PATH)
-TAG="testing"
+script=$(readlink -f $1)
+target_dir=$(dirname $script)
+build_path=$(dirname $(readlink -f $0))
+img=$USER/$(basename $build_path)
+tag="testing"
+
+unset 'args[0]'
 
 # Copy target script to pwd
-cp -r $TARGET_DIR $BUILD_PATH/$(basename $TARGET_DIR)
+cp -r $target_dir $build_path/$(basename $target_dir)
 
 # Test build image with target script
-docker build --no-cache --force-rm -t $IMG:$TAG \
---build-arg target=$(basename $TARGET_DIR) \
---build-arg script=$(basename $SCRIPT) \
-$BUILD_PATH
+docker build --no-cache --force-rm -t $img:$tag \
+--build-arg target=$(basename $target_dir) \
+--build-arg script=$(basename $script) \
+--build-arg args="${args[@]}" \
+$build_path
 
 # Set build status code
-STATUS=$?
+status=$?
 
 # Remove testing image
-docker rmi $IMG:$TAG
+docker rmi $img:$tag
 
 # Remove target script from pwd
-rm -rf $BUILD_PATH/$(basename $TARGET_DIR)
+rm -rf $build_path/$(basename $target_dir)
 
 # Exit with build status code
-exit $STATUS
+exit $status
