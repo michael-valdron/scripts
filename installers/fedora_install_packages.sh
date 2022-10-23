@@ -7,29 +7,29 @@ then
     exit 1
 fi
 
-YUM_REPOS_DIR=/etc/yum.repos.d
-BASE_DIR=$(dirname $0)
+yum_repos_dir=/etc/yum.repos.d
+base_dir=$(dirname $0)
 
 # Run base setup
-sh $BASE_DIR/fedora_setup.sh 1
+sh $base_dir/fedora_setup.sh 1
 
 # Add Visual Studio Code repository, if not exist
-if [ ! -f $YUM_REPOS_DIR/vscode.repo ];
+if [ ! -f $yum_repos_dir/vscode.repo ];
 then
     rpm --import "https://packages.microsoft.com/keys/microsoft.asc"
-    cp $BASE_DIR/repos/vscode.repo $YUM_REPOS_DIR/vscode.repo
+    cp $base_dir/repos/vscode.repo $yum_repos_dir/vscode.repo
 fi
 
 # Add GCP SDK repository, if not exist
-if [ ! -f $YUM_REPOS_DIR/google-cloud-sdk.repo ];
+if [ ! -f $yum_repos_dir/google-cloud-sdk.repo ];
 then
-    cp $BASE_DIR/repos/google-cloud-sdk.repo $YUM_REPOS_DIR/google-cloud-sdk.repo
+    cp $base_dir/repos/google-cloud-sdk.repo $yum_repos_dir/google-cloud-sdk.repo
 fi
 
 # Add yadm repository, if not exist
-if [ ! -f $YUM_REPOS_DIR/home:TheLocehiliosan:yadm.repo ] && [ ! -f $YUM_REPOS_DIR/yadm.repo ];
+if [ ! -f $yum_repos_dir/home:TheLocehiliosan:yadm.repo ] && [ ! -f $yum_repos_dir/yadm.repo ];
 then
-    cp $BASE_DIR/repos/yadm.repo $YUM_REPOS_DIR/yadm.repo
+    cp $base_dir/repos/yadm.repo $yum_repos_dir/yadm.repo
 fi
 
 # Remove packages
@@ -38,103 +38,36 @@ dnf -y remove libreoffice-core
 # Update packages
 dnf -y update
 
+# Install dependencies
+dnf -y install jq which
+
 # Install packages
-dnf -y install $((<$BASE_DIR/packages/${1}.rpm.json jq -r '.[].id | @sh') | tr -d \')
-
-# Install Minikube
-sh $BASE_DIR/packages/minikube/fedora_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
+if [ -f "${base_dir}/packages/${1}.rpm.json" ];
 then
-    echo "Minikube failed to install."
-    exit $STATUS
-fi
 
-# Install odo
-sh $BASE_DIR/packages/odo/fedora_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
-then
-    echo "odo failed to install."
-    exit $STATUS
-fi
+    dnf -y install $((<$base_dir/packages/${1}.rpm.json jq -r '.[].id | @sh') | tr -d \')
 
-# Install Etcher
-sh $BASE_DIR/packages/etcher/fedora_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
-then
-    echo "Etcher failed to install."
-    exit $STATUS
+else
+    echo "No RPM list exists for profile '${1}', skipping RPM install."
 fi
-
-# Install Zotero
-sh $BASE_DIR/packages/zotero/fedora_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
-then
-    echo "Zotero failed to install."
-    exit $STATUS
-fi
-
-# Install Gradle
-sh $BASE_DIR/packages/gradle/fedora_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
-then
-    echo "Gradle failed to install."
-    exit $STATUS
-fi
-
-# Install Leiningen
-sh $BASE_DIR/packages/lein/fedora_install.sh
-STATUS=$?
-if [ $STATUS -ne 0 ]
-then
-    echo "Leiningen failed to install."
-    exit $STATUS
-fi
-
-# Add flatpak remotes
-flatpak remote-add --if-not-exists flathub "https://flathub.org/repo/flathub.flatpakrepo"
 
 # Install flatpaks
-flatpaks=($((<$BASE_DIR/packages/workspace.flatpak.json jq -r '.[] | .source, .id') | tr -d \'))
-## Install Postman
-flatpak install -y flathub com.getpostman.Postman
-## Install MakeMKV
-flatpak install -y flathub com.makemkv.MakeMKV
-## Install OBS Studio
-flatpak install -y flathub com.obsproject.Studio
-## Install HandBrake
-flatpak install -y flathub fr.handbrake.ghb
-## Install Skype
-flatpak install -y flathub com.skype.Client
-## Install AnyDesk
-flatpak install -y flathub com.anydesk.Anydesk
-## Install Signal
-flatpak install -y flathub org.signal.Signal
-## Install Slack
-flatpak install -y flathub com.slack.Slack
-## Install Mailspring
-flatpak install -y flathub com.getmailspring.Mailspring
-## DejaDup Install
-flatpak install -y flathub org.gnome.DejaDup
-## GIMP Install
-flatpak install -y flathub org.gimp.GIMP
-## VLC Install
-flatpak install -y flathub org.videolan.VLC
-## KeePassXC Install
-flatpak install -y flathub org.keepassxc.KeePassXC
-## LibreOffice Install
-flatpak install -y flathub org.libreoffice.LibreOffice
-## calibre Install
-flatpak install -y flathub com.calibre_ebook.calibre
-## Xournal++ Install
-flatpak install -y flathub com.github.xournalpp.xournalpp
-## SQLite Browser Install
-flatpak install -y flathub org.sqlitebrowser.sqlitebrowser
-## Kdenlive Install
-flatpak install -y flathub org.kde.kdenlive
-## Deluge Install
-flatpak install -y flathub org.deluge_torrent.deluge
+if [ -z "$(which flatpak 2> /dev/null)" ];
+then
+    echo "flatpak is not installed, skipping flatpak install."
+elif [ -f "${base_dir}/packages/${1}.flatpak.json" ];
+then
+    # Add flatpak remotes
+    flatpak remote-add --if-not-exists flathub "https://flathub.org/repo/flathub.flatpakrepo"
+
+    flatpaks=($((<$base_dir/packages/${1}.flatpak.json jq -r '.[] | .source, .id') | tr -d \'))
+    i=0
+    while [ $i -lt ${#flatpaks[@]} ]
+    do
+        echo "Installing ${flatpaks[$i+1]} flatpak from ${flatpaks[$i]}..."
+        flatpak install -y ${flatpaks[$i]} ${flatpaks[$i+1]}
+        i=$((i+2))
+    done
+else
+    echo "No flatpaks list exists for profile '${1}', skipping flatpak install."
+fi
