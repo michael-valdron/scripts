@@ -71,8 +71,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Test Rocky Cloud Install
-      run: sh test/rocky/test.sh installers/cloud_install_packages.sh
+    - name: Test Rocky 8 Cloud Install
+      run: sh test/rocky/el8/test.sh installers/cloud_install_packages.sh
 
   manjarogaming:
     runs-on: ubuntu-latest
