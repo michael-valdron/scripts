@@ -29,14 +29,23 @@ jobs:
     - name: Test Fedora Gaming Install
       run: sh test/fedora/test.sh installers/fedoragaming_install_packages.sh
 
-  server:
+  server_el8:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Test Rocky Server Install
-      run: sh test/rocky/test.sh installers/server_install_packages.sh
+    - name: Test Rocky 8 Server Install
+      run: sh test/rocky/el8/test.sh installers/server_install_packages.sh
+
+  server_el9:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test Rocky 9 Server Install
+      run: sh test/rocky/el9/test.sh installers/server_install_packages.sh
 
   nameserver_buster:
 
