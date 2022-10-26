@@ -17,19 +17,19 @@ sh $BASE_DIR/fedora_setup.sh 1
 if [ ! -f $YUM_REPOS_DIR/vscode.repo ];
 then
     rpm --import "https://packages.microsoft.com/keys/microsoft.asc"
-    cp $BASE_DIR/repos/vscode.repo $YUM_REPOS_DIR/vscode.repo
+    cp $BASE_DIR/repos/fedora/vscode.repo $YUM_REPOS_DIR/vscode.repo
 fi
 
 # Add GCP SDK repository, if not exist
 if [ ! -f $YUM_REPOS_DIR/google-cloud-sdk.repo ];
 then
-    cp $BASE_DIR/repos/google-cloud-sdk.repo $YUM_REPOS_DIR/google-cloud-sdk.repo
+    cp $BASE_DIR/repos/fedora/google-cloud-sdk.repo $YUM_REPOS_DIR/google-cloud-sdk.repo
 fi
 
 # Add yadm repository, if not exist
 if [ ! -f $YUM_REPOS_DIR/home:TheLocehiliosan:yadm.repo ] && [ ! -f $YUM_REPOS_DIR/yadm.repo ];
 then
-    cp $BASE_DIR/repos/yadm.repo $YUM_REPOS_DIR/yadm.repo
+    cp $BASE_DIR/repos/fedora/yadm.repo $YUM_REPOS_DIR/yadm.repo
 fi
 
 # Remove packages

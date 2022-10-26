@@ -16,7 +16,7 @@ sh $BASE_DIR/fedora_setup.sh 1
 # Add yadm repository, if not exist
 if [ ! -f $YUM_REPOS_DIR/home:TheLocehiliosan:yadm.repo ] && [ ! -f $YUM_REPOS_DIR/yadm.repo ];
 then
-    cp $BASE_DIR/repos/yadm.repo $YUM_REPOS_DIR/yadm.repo
+    cp $BASE_DIR/repos/fedora/yadm.repo $YUM_REPOS_DIR/yadm.repo
 fi
 
 # Remove packages
