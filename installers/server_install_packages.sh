@@ -21,7 +21,7 @@ then
 fi
 
 # Install packages
-dnf -y install htop neofetch tmux zsh podman podman-compose podman-docker samba git
+dnf -y install htop neofetch tmux zsh podman podman-compose podman-docker samba git yadm
 
 # Install ZFS
 sh $base_dir/packages/zfs/rocky_install.sh
