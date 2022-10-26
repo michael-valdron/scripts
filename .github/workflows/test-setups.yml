@@ -21,14 +21,23 @@ jobs:
     - name: Test Fedora Setup
       run: sh test/fedora/test.sh installers/fedora_setup.sh
 
-  rocky:
+  rocky8:
     
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - name: Test Rocky Setup
-        run: sh test/rocky/test.sh installers/rocky_setup.sh
+      - name: Test Rocky 8 Setup
+        run: sh test/rocky/el8/test.sh installers/rocky_setup.sh
+
+  rocky9:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test Rocky 8 Setup
+        run: sh test/rocky/el9/test.sh installers/rocky_setup.sh
 
   debian_buster:
 
