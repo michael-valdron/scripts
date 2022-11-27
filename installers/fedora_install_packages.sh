@@ -115,6 +115,8 @@ flatpak install -y flathub com.skype.Client
 flatpak install -y flathub com.anydesk.Anydesk
 ## Install Signal
 flatpak install -y flathub org.signal.Signal
+## Install Telegram
+flatpak install -y flathub org.telegram.desktop
 ## Install Slack
 flatpak install -y flathub com.slack.Slack
 ## Install Mailspring
