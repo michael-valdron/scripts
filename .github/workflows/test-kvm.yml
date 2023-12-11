@@ -1,0 +1,22 @@
+name: Test KVM Files
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  rockylinux:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Packages
+        run: sudo apt update && sudo apt install -y libvirt-clients libxml2-utils
+
+      - name: Test Rocky Linux Template File
+        run: virt-xml-validate kvm/config/rockylinux.xml domain
