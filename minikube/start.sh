@@ -21,8 +21,7 @@ then
     exit 1
 fi
 
-${MINIKUBE_CMD} start --cpus=${MINIKUBE_CPUS} --memory=${MINIKUBE_MEM} --driver=${MINIKUBE_DRIVER} $@ && \
-${MINIKUBE_CMD} addons enable ingress && \
+${MINIKUBE_CMD} start --cpus=${MINIKUBE_CPUS} --memory=${MINIKUBE_MEM} --driver=${MINIKUBE_DRIVER} --addons='ingress' $@ && \
 ${KUBECTL_CMD} apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml && \
 cat <<EOF | ${KUBECTL_CMD} apply -f -
 apiVersion: v1
