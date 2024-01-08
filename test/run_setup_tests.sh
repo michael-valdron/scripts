@@ -42,4 +42,4 @@ if [ $? -ne 0 ]; then
     exit $?
 fi
 
-echo "All installers completed succussfully!"
+echo "All setup scripts completed succussfully!"
