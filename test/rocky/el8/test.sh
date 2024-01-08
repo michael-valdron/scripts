@@ -6,6 +6,7 @@ then
     exit 1
 fi
 
+CONTAINER_ENGINE=${CONTAINER_ENGINE:-docker}
 SCRIPT=$(readlink -f $1)
 TARGET_DIR=$(dirname $SCRIPT)
 BUILD_PATH=$(dirname $(readlink -f $0))
@@ -16,7 +17,7 @@ TAG="testing"
 cp -r $TARGET_DIR $BUILD_PATH/$(basename $TARGET_DIR)
 
 # Test build image with target script
-docker build --no-cache --force-rm -t $IMG:$TAG \
+${CONTAINER_ENGINE} build --no-cache --force-rm -t $IMG:$TAG \
 --build-arg target=$(basename $TARGET_DIR) \
 --build-arg script=$(basename $SCRIPT) \
 $BUILD_PATH
@@ -25,7 +26,7 @@ $BUILD_PATH
 STATUS=$?
 
 # Remove testing image
-docker rmi $IMG:$TAG
+${CONTAINER_ENGINE} rmi $IMG:$TAG
 
 # Remove target script from pwd
 rm -rf $BUILD_PATH/$(basename $TARGET_DIR)
