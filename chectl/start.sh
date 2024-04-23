@@ -14,8 +14,8 @@ MINIKUBE_K8S_VERSION=${MINIKUBE_K8S_VERSION:-'v1.23.9'}
 # Code Ready Containers Variables
 CRC_CLI=${CRC_CLI:-'crc'}
 CRC_CPUS=${CRC_CPUS:-'4'}
-CRC_MEM=${CRC_MEM:-'10240'}
-CRC_DISK_SIZE=${CRC_DISK_SIZE:-'50'}
+CRC_MEM=${CRC_MEM:-'12288'}
+CRC_DISK_SIZE=${CRC_DISK_SIZE:-'64'}
 
 if [ ! "$(command -v ${CHECTL_CLI})" ]; then
     echo "command \"${CHECTL_CLI}\" does not exists on system"
