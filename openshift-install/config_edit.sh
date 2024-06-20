@@ -1,6 +1,6 @@
 #!/bin/sh
 
-OPENSHIFT_INSTALL_DIR=${OPENSHIFT_INSTALL_DIR:-'~/.openshift-install'}
+OPENSHIFT_INSTALL_DIR=${OPENSHIFT_INSTALL_DIR:-"${HOME}/.openshift-install"}
 
 if [ $# -ne 1 ]
 then

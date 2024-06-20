@@ -1,7 +1,7 @@
 #!/bin/sh
 
 OPENSHIFT_INSTALL_CLI=${OPENSHIFT_INSTALL_CLI:-openshift-install}
-OPENSHIFT_INSTALL_DIR=${OPENSHIFT_INSTALL_DIR:-'~/.openshift-install'}
+OPENSHIFT_INSTALL_DIR=${OPENSHIFT_INSTALL_DIR:-"${HOME}/.openshift-install"}
 
 if [ ! "$(command -v ${OPENSHIFT_INSTALL_CLI})" ]; then
     echo "openshift-install command \"${OPENSHIFT_INSTALL_CLI}\" does not exists on system"
