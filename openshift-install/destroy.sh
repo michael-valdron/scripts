@@ -14,7 +14,7 @@ fi
 openshift_install_destroy_cli="${OPENSHIFT_INSTALL_CLI} destroy"
 
 case "${1}" in
-    1)
+    cluster)
         ${openshift_install_destroy_cli} cluster --dir ${OPENSHIFT_INSTALL_DIR}/${2}
     ;;
     *)
