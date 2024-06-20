@@ -16,10 +16,10 @@ openshift_install_create_cli="${OPENSHIFT_INSTALL_CLI} create"
 
 case "${1}" in
     cluster)
-        if [ -f "${2}.yaml" ]
+        if [ -f "${OPENSHIFT_INSTALL_DIR}/${2}.yaml" ]
         then
             cp ${OPENSHIFT_INSTALL_DIR}/${2}.yaml ${OPENSHIFT_INSTALL_DIR}/${2}/install-config.yaml
-        elif [ -f "${2}.yml" ]
+        elif [ -f "${OPENSHIFT_INSTALL_DIR}/${2}.yml" ]
         then
             cp ${OPENSHIFT_INSTALL_DIR}/${2}.yml ${OPENSHIFT_INSTALL_DIR}/${2}/install-config.yaml
         else
