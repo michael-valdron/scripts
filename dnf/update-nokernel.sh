@@ -2,7 +2,11 @@
 
 KERNEL_PACKAGES='kernel kernel-core kernel-devel kernel-devel-matched 
 kernel-modules kernel-modules-core kernel-modules-extra'
-BASE_DIR=$(dirname $0)
 
-sh ${BASE_DIR}/update.sh --exclude=${KERNEL_PACKAGES} $@
+if [ "$(command -v dnf)" ]; then
+	sudo dnf update --exclude="${KERNEL_PACKAGES}" $@
+else
+	echo "system does not use dnf"
+	exit 1
+fi
 
