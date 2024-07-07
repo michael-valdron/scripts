@@ -50,6 +50,14 @@ if [ $? -ne 0 ]; then
     exit $?
 fi
 
+echo "Test Debian Bookworm Nameserver Installer.."
+sh ${BASE_DIR}/debian/bookworm/test.sh ${BASE_DIR}/../installers/dns_install_packages.sh
+
+# Check if script did not exit properly
+if [ $? -ne 0 ]; then
+    exit $?
+fi
+
 echo "Test EL 8 Cloud Installer.."
 sh ${BASE_DIR}/rocky/el8/test.sh ${BASE_DIR}/../installers/cloud_install_packages.sh
 

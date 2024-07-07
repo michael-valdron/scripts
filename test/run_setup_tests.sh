@@ -42,4 +42,12 @@ if [ $? -ne 0 ]; then
     exit $?
 fi
 
+echo "Test Debian Bookworm Setup Script.."
+sh ${BASE_DIR}/debian/bookworm/test.sh ${BASE_DIR}/../installers/debian_setup.sh
+
+# Check if script did not exit properly
+if [ $? -ne 0 ]; then
+    exit $?
+fi
+
 echo "All setup scripts completed succussfully!"
