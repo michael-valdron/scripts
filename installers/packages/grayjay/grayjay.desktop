@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Grayjay Desktop
+Exec=/path/to/exec
+Icon=/path/to/icon
+Type=Application
+Terminal=false
+Categories=Internet;
+MimeType=text/plain
