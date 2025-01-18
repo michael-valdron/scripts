@@ -1,0 +1,4 @@
+- source: linux_init.sh
+  target: linstall
+- source: windows_init.ps1
+  target: winstall
