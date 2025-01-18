@@ -1,0 +1,36 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy-to-website:
+    runs-on: ubuntu-latest
+    env:
+      YQ_VERSION: "v4.43.1"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          submodules: recursive  # Fetch submodules
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+      - name: Install yq
+        run: curl -sL https://github.com/mikefarah/yq/releases/download/${{ env.YQ_VERSION }}/yq_linux_amd64 -o /usr/local/bin/yq && chmod +x /usr/local/bin/yq
+      - name: Get scripts to deploy
+        run: SCRIPTS=($(yq '.[].source' webdeploy.yaml))
+      - name: Generate public scripts
+        run: |
+          for s in "${SCRIPTS[@]}"; do 
+            public_s=$(yq ".[] | select(.source == \"$s\") | .target" webdeploy.yaml)
+            mkdir -p public/$(dirname ${public_s}) && echo $public_s && cp -r $s public/${public_s}
+          done
+      # Deploy to site
+      - name: Deploy to site
+        uses: JamesIves/github-pages-deploy-action@15de0f09300eea763baee31dff6c6184995c5f6a # v4.7.2
+        with:
+          token: ${{ secrets.DEPLOY_TOKEN }}
+          git-config-email: ${{ secrets.GIT_CONFIG_EMAIL }}
+          git-config-name: ${{ secrets.GIT_CONFIG_NAME }}
+          branch: github-pages
+          folder: public
+          repository-name: michael-valdron/michael-valdron.github.io
+          clean: true
