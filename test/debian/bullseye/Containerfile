@@ -2,6 +2,7 @@ FROM debian:11-slim
 
 ARG target
 ARG script
+ARG args=
 
 ENV SCRIPT_TESTING=1
 
@@ -11,7 +12,7 @@ COPY ${target} /target
 
 WORKDIR /target
 
-RUN sh ${script}
+RUN sh ${script} "${args}"
 
 WORKDIR /
 
