@@ -1,32 +1,37 @@
 #!/bin/sh
 
-# Check if running as root
-if [ "$EUID" -ne 0 ]
-then 
-    echo "Please run as root"
-    exit 1
-fi
-
 # Variables
-VERSION="1.7.9"
+ETCHER_GIT_REMOTE='https://github.com/balena-io/etcher.git'
+ETCHER_VERSION=${ETCHER_VERSION:-''}
+
+# Fetches latest version from etcher git source
+fetch_latest() {
+    local git_remote=$1
+    local fetched_version=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' ${git_remote} | tail --lines=1 | cut --delimiter='/' --fields=3)
+    local fetched_version=${fetched_version%%'^{}'}
+    echo ${fetched_version#'v'}
+}
 
 # Create required directories if they don't exist
-mkdir -p /tmp /opt/balena-etcher-electron/chrome-sandbox
+sudo mkdir -p /tmp /opt/balena-etcher-electron/chrome-sandbox
 
 # Install Dependencies
-dnf -y install curl which util-linux shared-mime-info desktop-file-utils
+sudo dnf -y install git curl which util-linux shared-mime-info desktop-file-utils
+
+# Use latest version if no version is set
+if [ -z "${ETCHER_VERSION}" ]; then
+    ETCHER_VERSION=$(fetch_latest ${ETCHER_GIT_REMOTE})
+fi
 
 # Download Etcher
-curl -L "https://github.com/balena-io/etcher/releases/download/v${VERSION}/balena-etcher-electron-${VERSION}.x86_64.rpm" -o /tmp/etcher.rpm
+curl -L "https://github.com/balena-io/etcher/releases/download/v${ETCHER_VERSION}/balena-etcher-${ETCHER_VERSION}-1.x86_64.rpm" -o /tmp/etcher.rpm
 
 # Install Etcher
-rpm -i --quiet /tmp/etcher.rpm
-if [ ! -f /usr/bin/etcher ]; then ln -s /opt/balenaEtcher/balena-etcher-electron /usr/bin/etcher; fi
+sudo rpm -i --quiet /tmp/etcher.rpm
 
 # Installation Check
-ETCHER_PATH=$(which etcher)
-if [ -z "${ETCHER_PATH}" ]
+if [ ! "$(command -v balena-etcher)" ]
 then
     echo "Etcher was not installed correctly."
-    exit 205
+    exit 1
 fi
