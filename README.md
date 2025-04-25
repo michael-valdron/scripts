@@ -12,6 +12,7 @@ Personal scripts to perform daily operations.
 - [kubectl](kubectl/)
 - [minikube](minikube/)
 - [qemu](qemu/)
+- [renovate](renovate/)
 - [security](security/)
 - [test](test/)
 
