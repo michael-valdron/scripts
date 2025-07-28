@@ -49,12 +49,15 @@ if [[ "${RENOVATE_USE_CONTAINER}" == "true" ]]; then
       ${RENOVATE_ENV_ARGS} renovate/renovate ${RENOVATE_REPOS}
   fi
 else
-  export RENOVATE_PLATFORM RENOVATE_AUTODISCOVER LOG_LEVEL
+  export RENOVATE_PLATFORM RENOVATE_AUTODISCOVER
   if [[ "${RENOVATE_SSL_NO_VERIFY}" == "true" ]]; then
     export NODE_TLS_REJECT_UNAUTHORIZED="0" GIT_SSL_NO_VERIFY="true"
   fi
   if [[ -n "${RENOVATE_CONFIG_FILE}" ]]; then
     export RENOVATE_CONFIG_FILE
+  fi
+  if [[ -n "${LOG_LEVEL}" ]]; then
+    export LOG_LEVEL
   fi
   ${RENOVATE_CLI} --token ${RENOVATE_TOKEN} ${RENOVATE_REPOS}
 fi
