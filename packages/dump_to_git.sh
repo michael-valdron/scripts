@@ -33,6 +33,11 @@ base_dir=$(dirname $0)
 do_push=${do_push:-true}
 ssl_verify=${SSL_VERIFY:-true}
 
+if [ $# -ne 2 ]; then
+    echo "expecting 2 positional parameters, example: dump_to_git.sh <package_list_alias> <git_url>" >&2
+    exit 1
+fi
+
 if [[ $git_url != http://* && $git_url != https://* ]]; then
     echo "Unsupported URL scheme" >&2
     exit 1
