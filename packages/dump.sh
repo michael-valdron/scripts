@@ -11,11 +11,11 @@ if [ -f /etc/os-release ]; then
             dpkg --get-selections > $output_dir/$package_list_alias.list
             ;;
         *)
-            echo "linux distro '$ID' not supported yet"
+            echo "linux distro '$ID' not supported yet" >&2
             exit 1
             ;;
     esac
 else
-    echo "non-linux OS not supported"
+    echo "non-linux OS not supported" >&2
     exit 1
 fi
