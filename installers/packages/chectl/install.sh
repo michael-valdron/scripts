@@ -1,10 +1,11 @@
 #!/bin/bash
 
+CHECTL_DL_URL='https://che-incubator.github.io/chectl/install.sh'
 CHECTL_DL_PATH=${CHECTL_DL_PATH:-'/tmp/chectl-install.sh'}
 CHECTL_CHANNEL=${CHECTL_CHANNEL:-'stable'}
 
 echo "Downloading chectl install script.."
-curl -L https://www.eclipse.org/che/chectl/ -o ${CHECTL_DL_PATH}
+curl -L ${CHECTL_DL_URL} -o ${CHECTL_DL_PATH}
 if [ $? -ne 0 ]
 then
     echo "error: problem downloading chectl"
