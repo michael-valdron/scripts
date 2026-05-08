@@ -7,14 +7,9 @@ Personal scripts to perform daily operations.
 
 ## Table of Contents
 
-- [duplicity](duplicity/)
 - [installers](installers/)
-- [kubectl](kubectl/)
-- [minikube](minikube/)
-- [qemu](qemu/)
-- [renovate](renovate/)
-- [security](security/)
-- [test](test/)
+- [util](util/) - Utility Script
+- [test](test/) - Test Suite
 
 ## Testing
 
