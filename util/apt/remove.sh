@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ "$(command -v apt)" ]
+then
+    sudo apt update # Refresh package lists before removing
+    sudo apt remove $@
+else
+    echo "system does not use apt"
+    exit 1
+fi
