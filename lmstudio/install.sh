@@ -7,7 +7,7 @@
 # --- Configuration ---
 DOWNLOAD_DIR="/tmp/lmstudio_download"
 INSTALL_BIN="$HOME/.local/bin/lmstudio"
-SHARE_DIR="$HOME/.local/share/LM Studio" # Corrected directory name.  Important!
+SHARE_DIR="$HOME/.local/share/LM Studio"
 
 # --- Color Definitions ---
 RED='\033[0;31m'
@@ -99,7 +99,7 @@ function download_appimage() {
     echo -e "${BLUE}---------------------------------------${NC}"
 
     mkdir -p "$DOWNLOAD_DIR"
-    curl -L "https://lmstudio.ai/download/latest/linux/x64" -o "$DOWNLOAD_DIR/lmstudio.AppImage" # Download with a fixed filename for simplicity
+    curl -L "https://lmstudio.ai/download/latest/linux/x64" -o "$DOWNLOAD_DIR/lmstudio.AppImage"
 
     if [ $? -eq 0 ]; then
         print_status "${GREEN}[+] SUCCESS:${NC}" "LM Studio AppImage downloaded successfully."
@@ -148,6 +148,7 @@ function install_and_link() {
 function cleanup() {
     echo -e "\n${BLUE}=======================================${NC}"
     echo -e "${YELLOW}STEP 5/5: Cleaning up temporary files...${NC}"
+    echo -e "${BLUE}---------------------------------------${NC}"
     rm -rf "$DOWNLOAD_DIR"
     if [ $? -eq 0 ]; then
         print_status "${GREEN}[+] SUCCESS:${NC}" "Cleanup finished. You are ready to run LM Studio!"
