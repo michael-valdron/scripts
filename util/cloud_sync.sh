@@ -7,7 +7,10 @@ RCLONE_CLI=${RCLONE_CLI:-rclone}
 src_path=$1
 dst_path=$2
 
-if [ $# -ne 2 ] && [ -z ${src_path} ] && [ -z ${dst_path} ]; then
+if ! ${RCLONE_CLI} > /dev/null; then
+    echo "Please install rclone to run this script."
+    exit 1
+elif [ $# -ne 2 ] && [ -z ${src_path} ] && [ -z ${dst_path} ]; then
     echo "Please provide two arguments, sh cloud_sync.sh <src_path> <dst_path>."
     exit 1
 elif [ -z ${SRC_CLOUD_ID} ]; then
