@@ -1,0 +1,33 @@
+services:
+  test-fedora:
+    image: quay.io/fedora/fedora:42@sha256:90fa1c898df395095eb72ddb74d7c64ce33d6f0f19131b65a456b53edf9e1ca4
+    volumes:
+      - ${PWD}:/scripts:Z
+    working_dir: /scripts
+    environment:
+      - SCRIPT_TESTING=1
+    entrypoint: sh
+  test-debian-bookworm:
+    image: docker.io/library/debian:12.13-slim@sha256:67b30a61dc87758f0caf819646104f29ecbda97d920aaf5edc834128ac8493d3
+    volumes:
+      - ${PWD}:/scripts:Z
+    working_dir: /scripts
+    environment:
+      - SCRIPT_TESTING=1
+    entrypoint: sh
+  test-archlinux:
+    image: docker.io/library/archlinux:base
+    volumes:
+      - ${PWD}:/scripts:Z
+    working_dir: /scripts
+    environment:
+      - SCRIPT_TESTING=1
+    entrypoint: sh
+  test-ubuntu-24.04:
+    image: docker.io/library/ubuntu:24.04@sha256:c4a8d5503dfb2a3eb8ab5f807da5bc69a85730fb49b5cfca2330194ebcc41c7b
+    volumes:
+      - ${PWD}:/scripts:Z
+    working_dir: /scripts
+    environment:
+      - SCRIPT_TESTING=1
+    entrypoint: sh
