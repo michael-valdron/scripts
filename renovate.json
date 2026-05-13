@@ -1,0 +1,20 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "baseBranches": ["main"],
+    "timezone": "America/Toronto",
+    "schedule": [
+        "* 19-23 * * 5",
+        "* 0-2 * * 6"
+    ],
+    "automerge": true,
+    "automergeType": "pr",
+    "automergeStrategy": "squash",
+    "enabledManagers": ["docker-compose"],
+    "packageRules": [
+        {
+            "matchUpdateTypes": ["major"],
+            "matchBaseBranches": "main",
+            "enabled": false
+        }
+    ]
+}
