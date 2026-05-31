@@ -16,6 +16,20 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
+# --- Argument Parsing ---
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --gnome)
+      CREATE_DESKTOP=true
+      shift
+      ;;
+    *)
+      echo "Unknown parameter: $1" >&2
+      exit 1
+      ;;
+  esac
+done
+
 function print_status() {
     echo -e "${1}${2}"
 }
@@ -95,7 +109,7 @@ function check_dependencies() {
 
 function download_appimage() {
     echo -e "\n${BLUE}=======================================${NC}"
-    echo -e "${YELLOW}STEP 2/5: Downloading LM Studio AppImage...${NC}"
+    echo -e "${YELLOW}STEP 2/6: Downloading LM Studio AppImage...${NC}"
     echo -e "${BLUE}---------------------------------------${NC}"
 
     mkdir -p "$DOWNLOAD_DIR"
@@ -112,7 +126,7 @@ function download_appimage() {
 
 function setup_permissions() {
     echo -e "\n${BLUE}=======================================${NC}"
-    echo -e "${YELLOW}STEP 3/5: Setting up permissions...${NC}"
+    echo -e "${YELLOW}STEP 3/6: Setting up permissions...${NC}"
     echo -e "${BLUE}---------------------------------------${NC}"
 
     chmod +x "$DOWNLOAD_DIR/lmstudio.AppImage"
@@ -128,7 +142,7 @@ function setup_permissions() {
 
 function install_and_link() {
     echo -e "\n${BLUE}=======================================${NC}"
-    echo -e "${YELLOW}STEP 4/5: Installing and linking the binary...${NC}"
+    echo -e "${YELLOW}STEP 4/6: Installing and linking the binary...${NC}"
     echo -e "${BLUE}---------------------------------------${NC}"
 
     mv "$DOWNLOAD_DIR/lmstudio.AppImage" "$SHARE_DIR/"
@@ -145,9 +159,41 @@ function install_and_link() {
     fi
 }
 
+function create_desktop_file() {
+    echo -e "\n${BLUE}=======================================${NC}"
+    echo -e "${YELLOW}STEP 5/6: Creating desktop file...${NC}"
+    echo -e "${BLUE}---------------------------------------${NC}"
+
+    DESKTOP_FILE="$HOME/.local/share/applications/lmstudio.desktop"
+
+    if [ "$CREATE_DESKTOP" = true ]; then
+        cat > "$DESKTOP_FILE" <<EOL
+[Desktop Entry]
+Name=LM Studio
+Comment=Local LLM Inference with LM Studio
+Exec="$INSTALL_BIN"
+Terminal=false
+Type=Application
+Categories=Development;Utility;
+EOL
+
+        if [ $? -eq 0 ]; then
+            print_status "${GREEN}[+] SUCCESS:${NC}" "Desktop file created at '$DESKTOP_FILE'."
+        else
+            print_status "${RED}[!] ERROR:${NC}" "Failed to create desktop file. Check permissions and ensure the directory exists."
+            return 1 # Indicate failure
+        fi
+
+        chmod +x "$DESKTOP_FILE"  # Make executable (important for GNOME)
+    else
+        print_status "${BLUE}[i] SKIPPED:${NC}" "GNOME Desktop not indicated and will skip creating the desktop file."
+    fi
+}
+
+
 function cleanup() {
     echo -e "\n${BLUE}=======================================${NC}"
-    echo -e "${YELLOW}STEP 5/5: Cleaning up temporary files...${NC}"
+    echo -e "${YELLOW}STEP 6/6: Cleaning up temporary files...${NC}"
     echo -e "${BLUE}---------------------------------------${NC}"
     rm -rf "$DOWNLOAD_DIR"
     if [ $? -eq 0 ]; then
@@ -167,6 +213,7 @@ check_dependencies
 download_appimage
 setup_permissions
 install_and_link
+create_desktop_file
 cleanup
 
 echo -e "\n${BLUE}\033[1m========================================\033[0m"

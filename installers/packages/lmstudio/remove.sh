@@ -66,9 +66,29 @@ function remove_share_directory() {
   fi
 }
 
+function remove_desktop_file() {
+    echo -e "\n${BLUE}=======================================${NC}"
+    echo -e "${YELLOW}STEP 4/5: Removing desktop file...${NC}"
+    echo -e "${BLUE}---------------------------------------${NC}"
+
+    DESKTOP_FILE="$HOME/.local/share/applications/lmstudio.desktop"
+
+    if [ -f "$DESKTOP_FILE" ]; then
+      rm "$DESKTOP_FILE"
+      if [ $? -eq 0 ]; then
+          print_status "${GREEN}[+] SUCCESS:${NC}" "Desktop file '$DESKTOP_FILE' removed."
+      else
+          print_status "${RED}[!] ERROR:${NC}" "Failed to remove the desktop file. Check permissions and ensure the directory exists."
+          return 1 # Indicate failure
+      fi
+    else
+      print_status "${BLUE}[i] SKIPPED:${NC}" "No desktop file found."
+    fi
+}
+
 function cleanup() {
   echo -e "\n${BLUE}=======================================${NC}"
-  echo -e "${YELLOW}STEP 4/4: Final Cleanup...${NC}"
+  echo -e "${YELLOW}STEP 5/5: Final Cleanup...${NC}"
   echo -e "${BLUE}---------------------------------------${NC}"
 
   if [ -d "$DOWNLOAD_DIR" ]; then
@@ -95,6 +115,7 @@ echo -e "\n${BLUE}\033[1m=== LM STUDIO UNINSTALLATION STARTING ===${NC}"
 remove_symlink
 remove_appimage
 remove_share_directory
+remove_desktop_file
 cleanup
 
 echo -e "\n${BLUE}\033[1m========================================${NC}"
